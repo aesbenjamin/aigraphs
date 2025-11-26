@@ -1,0 +1,385 @@
+:root {
+    --bg-color: #030712;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent-color: #6366f1;
+    --panel-bg: rgba(15, 23, 42, 0.85);
+    --panel-border: rgba(148, 163, 184, 0.1);
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'Outfit', sans-serif;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.background-gradient {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: 
+        radial-gradient(circle at 15% 50%, rgba(79, 70, 229, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 85% 30%, rgba(236, 72, 153, 0.08) 0%, transparent 25%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Header Styles */
+.app-header {
+    position: absolute;
+    top: 2rem;
+    left: 3rem;
+    z-index: 10;
+    pointer-events: none;
+    max-width: 400px;
+}
+
+.app-header h1 {
+    font-family: var(--font-heading);
+    font-size: 3rem;
+    margin: 0 0 0.5rem 0;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    background: linear-gradient(to right, #fff, #94a3b8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header .highlight {
+    color: var(--accent-color);
+    -webkit-text-fill-color: initial;
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.app-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* Container & Chart */
+#container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#chart {
+    width: 100%;
+    height: 100%;
+}
+
+/* Info Panel Styling */
+#info-panel {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    width: 360px;
+    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: var(--panel-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--panel-border);
+    border-radius: 16px;
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+        0 2px 4px -1px rgba(0, 0, 0, 0.06),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: auto;
+    transform-origin: top right;
+    z-index: 20;
+}
+
+#info-panel.hidden {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.panel-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0;
+}
+
+.year-badge {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.25rem 0.75rem;
+    border-radius: 99px;
+    color: #fbbf24;
+    font-size: 0.9rem;
+    border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+#panel-title {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+#panel-content {
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+    padding-right: 0.5rem;
+}
+
+#panel-content::-webkit-scrollbar {
+    width: 4px;
+}
+#panel-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.02);
+}
+#panel-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+#panel-content p {
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+    font-size: 0.95rem;
+    text-align: justify;
+}
+
+.panel-footer {
+    border-top: 1px solid var(--panel-border);
+    padding-top: 1rem;
+    flex-shrink: 0;
+}
+
+.external-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color 0.2s;
+    padding: 0.5rem 1rem;
+    background: rgba(99, 102, 241, 0.1);
+    border-radius: 6px;
+}
+
+.external-link:hover {
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.15);
+}
+
+/* Controls Hint */
+.controls-hint {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.5rem 1.5rem;
+    border-radius: 99px;
+    backdrop-filter: blur(4px);
+    pointer-events: none;
+    z-index: 15;
+}
+
+.controls-hint p {
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
+}
+
+/* SVG Elements */
+svg {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+}
+
+svg:active {
+    cursor: grabbing;
+}
+
+.link {
+    stroke: #334155;
+    stroke-opacity: 0.4;
+    stroke-width: 1px;
+    transition: stroke-width 0.3s;
+}
+
+.node-group {
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.node-group:hover {
+    opacity: 1;
+}
+
+.node-group.active {
+    opacity: 1;
+}
+
+/* When hovering a node, fade others slightly */
+/* Aplica opacidade reduzida se houver hover/active, exceto no próprio elemento hover/active */
+.has-hover .node-group:not(:hover):not(.active) {
+    opacity: 0.3;
+}
+
+.node {
+    stroke: var(--bg-color);
+    stroke-width: 2px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3));
+}
+
+/* Highlight Styles - More Specificity */
+.node-group.active circle.node,
+.node-group:hover circle.node {
+    stroke: #fff !important;
+    stroke-width: 3px !important;
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.8));
+    r: 28px; /* Force radius via CSS if JS transition fails/lags */
+}
+
+.node-group.active text,
+.node-group:hover text {
+    opacity: 1 !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+    fill: #fff !important;
+}
+
+/* Author Credit */
+.author-credit {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 2rem;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    opacity: 0.6;
+    font-family: var(--font-heading);
+    pointer-events: none;
+    z-index: 15;
+}
+
+/* Mobile Controls (Default Hidden) */
+#mobile-controls {
+    display: none;
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(15, 23, 42, 0.9);
+    backdrop-filter: blur(12px);
+    padding: 0.75rem;
+    border-radius: 16px;
+    border: 1px solid var(--panel-border);
+    align-items: center;
+    gap: 1rem;
+    z-index: 30;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 8px;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.nav-btn:active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.nav-info {
+    font-family: var(--font-heading);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .app-header {
+        top: 1rem;
+        left: 1.5rem;
+        right: 1.5rem;
+        max-width: none;
+        pointer-events: none;
+    }
+
+    .app-header h1 {
+        font-size: 2rem;
+    }
+
+    .app-header p {
+        font-size: 0.9rem;
+        display: none; /* Hide subtitle on mobile to save space */
+    }
+
+    /* Adjust Info Panel for Mobile */
+    #info-panel {
+        top: auto;
+        bottom: 6rem; /* Space for controls */
+        left: 1rem;
+        right: 1rem;
+        width: auto;
+        max-height: 40vh;
+        border-radius: 12px;
+        padding: 1rem;
+    }
+    
+    #info-panel.hidden {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    /* Hide desktop hints */
+    .controls-hint {
+        display: none;
+    }
+    
+    /* Show Mobile Controls */
+    #mobile-controls {
+        display: flex;
+    }
+
+    /* Adjust Author Credit position */
+    .author-credit {
+        bottom: 0.5rem;
+        right: 50%;
+        transform: translateX(50%);
+        font-size: 0.75rem;
+        width: 100%;
+        text-align: center;
+    }
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolução da Inteligência Artificial</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <div class="background-gradient"></div>
+    
+    <header class="app-header">
+        <h1>Timeline da <span class="highlight">Inteligência Artificial</span></h1>
+        <p>Explore a evolução da IA desde os fundamentos até os modelos multimodais.</p>
+    </header>
+
+    <div id="container">
+        <div id="chart"></div>
+        
+        <div id="info-panel" class="hidden">
+            <div class="panel-header">
+                <span id="panel-year" class="year-badge"></span>
+                <h2 id="panel-title"></h2>
+            </div>
+            <div id="panel-content">
+                <p id="panel-desc"></p>
+            </div>
+            <div class="panel-footer">
+                <a id="panel-link" href="#" target="_blank" class="external-link">
+                    Ler mais
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="controls-hint">
+        <p>Arraste os nós • Use o scroll para zoom</p>
+    </div>
+
+    <!-- Mobile Navigation Controls -->
+    <div id="mobile-controls">
+        <button id="btn-prev" class="nav-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <div class="nav-info">
+            <span id="current-node-index">0</span> / <span id="total-nodes">0</span>
+        </div>
+        <button id="btn-next" class="nav-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+    </div>
+
+    <div class="author-credit">
+        by Alex Benjamin
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
